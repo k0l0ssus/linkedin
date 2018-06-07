@@ -10,23 +10,9 @@
         <title>Our Products</title>
     </h:head>
     <h:body>
-        <h:form id="menuForm">
-            <p:outputPanel autoUpdate="true">
-                <p:menubar>
-                    <p:menuitem value="Cart(#{shoppingCart.pendingOrder.orderItems.values().size()})" url="/faces/shopping_cart.xhtml" icon="ui-icon-cart" />
-                    <p:menuitem value="Products" url="/faces/product_listing.xhtml" icon="ui-icon-shop" />
-                    <p:menuitem value="Manage Orders" url="/faces/order_management.xhtml" icon="ui-icon-gear" />
-                    <f:facet name="options">
-                        <p:outputLabel for="basic" value="Choose a theme " />
-                        <p:themeSwitcher valueChangeListener="#{themeDao.themeSwitch}" id="basic" style="width:165px" value="#{shoppingCart.currentTheme}">
-                            <p:ajax event="change"/>
-                            <f:selectItem itemLabel="Choose Theme" itemValue="" />
-                            <f:selectItems value="#{themeDao.themeList}" var="theme" itemLabel="#{theme}" itemValue="#{theme}"/>
-                        </p:themeSwitcher>
-                    </f:facet>
-                </p:menubar>
-            </p:outputPanel>
-        </h:form>
+
+        <ui:include src="/WEB-INF/menu.xhtml"/>
+
 
 
 
