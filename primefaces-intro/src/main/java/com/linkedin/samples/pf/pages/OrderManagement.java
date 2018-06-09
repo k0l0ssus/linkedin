@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.PrimeFaces;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -47,8 +48,8 @@ public class OrderManagement implements Serializable {
     }
 
     public void fulfillOrder(Order order) {
-      System.out.println("Fulfilling order "+order);
       orders.forEach(item -> {if(item.getOrderId()==order.getOrderId()){item.setOrderStatus(OrderStatus.FULFILLED);}});
+      PrimeFaces.current().ajax().update("ordersForm:ordersTable");
     }
     
     public void viewOrder(Order order){

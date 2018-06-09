@@ -32,7 +32,6 @@ public class ShoppingCart implements Serializable {
         if (pendingOrder == null) {
             pendingOrder = new Order();
              }
-        
         pendingOrder.getOrderItems().put(product, quantityValue);
         BigDecimal price = product.getPricePer();
         BigDecimal cost = price.multiply(new BigDecimal(quantityValue));

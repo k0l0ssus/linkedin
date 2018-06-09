@@ -20,7 +20,7 @@
                       value="Refresh"/>
         </p:dialog>
 
-        <h:form>
+        <h:form id="ordersForm">
             <p:dataTable value="#{orderManagement.orders}" filterEvent="enter" emptyMessage="No orders" id="ordersTable" style="width: 1000px; height: 800px; position:relative;left: 150px;top: 30px" paginatorAlwaysVisible="true" var="order" draggableRows="true" resizableColumns="true" paginator="true" multiViewState="true">
                 <p:column sortBy="#{order.orderId}" filterBy="#{order.orderId}" headerText="Order Id">
                     <h:outputText value=" #{order.orderId}"/>
@@ -39,7 +39,7 @@
                 <p:column headerText="Actions" exportable="false">
                     <p:panelGrid columns="1">
                         <p:commandButton value="View order" action="#{orderManagement.viewOrder(order)}" oncomplete="PF('orderItems').show()"/>
-                        <p:commandButton value ="Fulfill Order" action="#{orderManagement.fulfillOrder(order)}" update="ordersTable" oncomplete="PF('generalDialogBox').show()" disabled="#{order.orderStatus eq 'FULFILLED' }"/>
+                        <p:commandButton value ="Fulfill Order" action="#{orderManagement.fulfillOrder(order)}"  oncomplete="PF('generalDialogBox').show()" disabled="#{order.orderStatus eq 'FULFILLED' }"/>
                     </p:panelGrid>
                 </p:column>
                 <f:facet name="footer">
