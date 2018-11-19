@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Output Components</title>
+    </h:head>
+    <h:body>
+
+
+        <c:set var='dogList' value="#{['Corgi','Black Labrador','Golden Retriever']}"/>
+        <h:panelGrid columns="3">
+            <h:outputLabel value="An Output Text:"/>
+            <h:outputText value="I'm an outputText!"/>
+            <h:outputLabel value="Another Output Text:"/>
+            <h:outputText value="I'm an outputText too!"/>
+        </h:panelGrid>
+
+        <h:panelGroup id="aSpan">
+            <h:outputLabel value="A span Output Text: "/>
+            <h:outputText value="I'm an outputText!"/>
+        </h:panelGroup>
+        <br/>
+        <h:panelGroup id="aGroup" layout="block">
+            <h:outputLabel value="A div output Text: "/>
+            <h:outputText value="I'm an outputText!"/>
+        </h:panelGroup>
+        <br/>
+        <ui:repeat value="#{dogList}" var="dog">
+            <h:panelGroup id="aGroup" layout="block">
+                <h:outputLabel value="A dog: "/>
+                <h:outputText value="#{dog}"/>
+            </h:panelGroup>
+        </ui:repeat>
+        <br/>
+        <h:panelGroup id="dataTableDiv" layout="block">
+            <h:form>
+                <h:commandButton value="filter">
+                    <f:ajax execute="filterValue dessertTable" render="dessertTable"/>
+                </h:commandButton>
+                <h:inputText id="filterValue" binding="#{filterTextBox}"/>
+                <br/>
+                <h:dataTable id="dessertTable" value="#{dessertDao.desserts}" var="dessert">
+                    <h:column>
+                        <f:facet name="header">
+                            Dessert Name
+                        </f:facet>
+                        <h:outputText value="#{dessert.dessertName}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Say Hello with a Link!
+                        </f:facet>
+                        <h:link target="_blank" outcome="index.xhtml?guestName=#{dessert.dessertName}" value="Say Hello to #{dessert.dessertName}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Say Hello with a Button!
+                        </f:facet>
+                        <h:button outcome="index.xhtml?guestName=#{dessert.dessertName}" value="Say Hello to #{dessert.dessertName}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </h:panelGroup>
+    </h:body>
+</html>
+
